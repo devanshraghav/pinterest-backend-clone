@@ -5,9 +5,14 @@ const postSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  user:{
+
+  image: {
+    type: String,
+  },
+  
+  user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: "User",
   },
   creationDate: {
     type: Date,

@@ -7,6 +7,8 @@ const postModel = require("./posts");
 const passport = require("passport");
 const localStrategy = require("passport-local");
 
+const upload = require("./multer");
+
 passport.use(new localStrategy(userModel.authenticate()));
 
 /* GET home page. */
@@ -25,8 +27,12 @@ router.get("/signin", function (req, res, next) {
 });
 
 /* GET Profile Page */
-router.get("/profile", isLoggedIn, function (req, res, next) {
-  res.render("profile");
+router.get("/profile", isLoggedIn, async function (req, res, next) {
+  const user = await userModel.findOne({
+    username: req.session.passport.user,
+  }).populate('posts');
+  console.log(user);
+  res.render("profile", { user });
 });
 
 /* Post Sigin */
@@ -70,6 +76,40 @@ router.get("/logout", function (req, res) {
     res.redirect("/");
   });
 });
+
+/* Post route for uploads*/
+router.post(
+  "/upload",
+  isLoggedIn,
+  upload.single("file"),
+  async function (req, res) {
+    if (!req.file) {
+      return res.status(400).send("No files were uploaded");
+    }
+
+    // file which is being uploaded save that file as a post in DB. And
+    // provide the post id of this post to the user - and similarly user id to the post.
+
+    // Get User:
+    const user = await userModel.findOne({
+      username: req.session.passport.user,
+    });
+
+    // Create Post having user id:
+    const postData = await postModel.create({
+      image: req.file.filename,
+      postText: req.body.postText,
+      user: user._id,
+    });
+
+    // put the post id inside the user db
+    user.posts.push(postData._id);
+
+    await user.save();
+
+    res.send("File uploaded successfully");
+  }
+);
 
 /* Protected route config */
 function isLoggedIn(req, res, next) {

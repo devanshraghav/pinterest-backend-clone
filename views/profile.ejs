@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link rel="stylesheet" href="/stylesheets/profile.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <nav>
+      <div>
+        <img
+          src="https://i.pinimg.com/originals/d3/d1/75/d3d175e560ae133f1ed5cd4ec173751a.png"
+          alt="pinterest-logo"
+          class="logo"
+        />
+      </div>
+
+      <input type="text" placeholder="Search Pins" class="search"/>
+
+      <a href="/signin">SignIn</a>
+    </nav>
+    <!-- Main -->
+    <main>
+      <div class="section1">
+        <img
+          src="https://i.pinimg.com/originals/d3/d1/75/d3d175e560ae133f1ed5cd4ec173751a.png"
+          alt="profile-pic"
+          class="dp-img"
+        />
+        <h2><%= user.fullName%></h2>
+        <h4><%= user.email%></h4>
+        <h6>0 following</h6>
+        <a href="/logout" class="button">Logout</a>
+        <!-- <div><button>Share</button> <button>Edit Profile</button></div> -->
+      </div>
+
+      <div class="section2">
+        <p>Nothing to show...yet! Pins you create will live here.</p>
+        <!-- <button class="pin-create">Create Pin</button> -->
+      </div>
+    </main>
+
+    <div class="modal">
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="text" name="postText" placeholder="Add a title" />
+        <input type="file" name="file" />
+        <button type="submit" class="pin-create">Create Pin</button>
+      </form>
+    </div>
+
+    <div class="uploads">
+      <div class="cards">
+        <% user.posts.forEach(function(post){ %>
+        <div class="card">
+          <img alt="upload-feed" src="/images/uploads/<%= post.image%>" class="card-image" />
+          <div class="card-body">
+            <h4 class="card-title"><%= post.postText %></h4>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </body>
+</html>

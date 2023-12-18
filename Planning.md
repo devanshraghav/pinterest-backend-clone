@@ -54,3 +54,7 @@ router.get("/alluserpost", async function (req, res, next) {
 
   res.send(user);
 });
+
+
+<!-- Profile Page -->
+Post: will have  Image, Caption
