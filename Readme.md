@@ -20,6 +20,7 @@ Creating this website to practice and learn more about backend functionalities.
  - show flash message if wrong info provided - during login
 
  ## 4th Commit Implementation:
+ - Added logout button in the profile page.
  - Installed uuid(to give unique name to each file being created) and multer(for file upload).
  - Added feature to add images and display in the webpage.
  - Additionally those image data i.e post will be stored inside the database - For a particular user who created that post.

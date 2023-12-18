@@ -81,12 +81,14 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   padding: 1.4rem;
-  gap: 1rem
+  gap: 1rem;
+  align-items: start;
 }
 
 .card {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: .7rem;
+  background-color: white;
 }
 
 .card-image {
