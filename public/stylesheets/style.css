@@ -75,3 +75,10 @@ p:last-child{
   margin: 1rem;
   font-size: .8rem;
 }
+
+.error{
+  font-weight: 500;
+  color: red;
+  text-transform: capitalize;
+  margin: .5rem 0;
+}

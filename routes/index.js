@@ -14,19 +14,22 @@ router.get("/", function (req, res, next) {
   res.render("feed");
 });
 
+/* GET Signup Page */
 router.get("/signup", function (req, res, next) {
   res.render("signUp");
 });
 
+/* GET SignIn Page */
 router.get("/signin", function (req, res, next) {
-  res.render("signIn");
+  res.render("signIn", { error: req.flash("error") });
 });
 
-// Profile Route
+/* GET Profile Page */
 router.get("/profile", isLoggedIn, function (req, res, next) {
-  res.send("Profile Page");
+  res.render("profile");
 });
 
+/* Post Sigin */
 router.post("/register", function (req, res) {
   // const userData = new userModel({
   //   username: req.body.username,
@@ -49,15 +52,18 @@ router.post("/register", function (req, res) {
   });
 });
 
+/* Post Signin */
 router.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/profile",
-    failureRedirect: "/",
+    failureRedirect: "/signin",
+    failureFlash: true,
   }),
   function (req, res) {}
 );
 
+/* GET Logout */
 router.get("/logout", function (req, res) {
   req.logOut(function (err) {
     if (err) return next(err);
@@ -65,6 +71,7 @@ router.get("/logout", function (req, res) {
   });
 });
 
+/* Protected route config */
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
   res.redirect("/");
