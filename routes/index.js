@@ -107,7 +107,7 @@ router.post(
 
     await user.save();
 
-    res.send("File uploaded successfully");
+    res.redirect("/profile");
   }
 );
 
