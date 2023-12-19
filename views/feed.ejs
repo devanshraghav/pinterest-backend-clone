@@ -8,19 +8,7 @@
   </head>
   <body>
     <!-- Header -->
-    <nav>
-      <div>
-        <img
-          src="https://i.pinimg.com/originals/d3/d1/75/d3d175e560ae133f1ed5cd4ec173751a.png"
-          alt="pinterest-logo"
-          class="logo"
-        />
-      </div>
-
-      <input type="text" placeholder="Search Pins"/>
-
-      <a href="/signin">SignIn</a>
-    </nav>
+    <% include ./partials/navbar.ejs %>
     <!-- Main Body -->
     <main>
       <div class="container">
@@ -74,6 +62,6 @@
         </div>
       </div>
     </main>
+
     <!-- Footer -->
-  </body>
-</html>
+    <% include ./partials/footer.ejs %>
