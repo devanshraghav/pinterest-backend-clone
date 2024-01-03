@@ -31,4 +31,8 @@ Creating this website to practice and learn more about backend functionalities.
  - Slightly improved the UI of profile page and its functionality which includes:
     - Created the profile pic section where user can upload its profile pic
     - Adjusted the text and buttons
-    - Chnaged the design of card/pin posted by the user - but need more modification
+    - Changed the design of card/pin posted by the user - but need more modification
+
+## 5th Commit Implementation:
+ - Added feature to upload profile pic.
+ - commented out the section to create pins and changed the display. -- Need some modification
