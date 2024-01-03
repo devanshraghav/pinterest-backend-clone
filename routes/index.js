@@ -13,7 +13,12 @@ passport.use(new localStrategy(userModel.authenticate()));
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("feed");
+  if (req.user) {
+    res.render("feed", {login : true});
+  }
+  else{
+    res.render("feed", {login: false})
+  }
 });
 
 /* GET Signup Page */
@@ -31,7 +36,6 @@ router.get("/profile", isLoggedIn, async function (req, res, next) {
   // const user = await userModel.findOne({
   //   username: req.session.passport.user,
   // }).populate('posts');
-
 
   // To show DP - uploaded by the user
   const user = await userModel.findOne({

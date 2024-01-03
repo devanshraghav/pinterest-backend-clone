@@ -9,26 +9,37 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-nav{
+nav {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-}
-
-.logo{
+  }
+  
+  .nav-links {
+    display: flex;
+    margin-right: 1rem;
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+  .logo-image {
     width: 4rem;
-}
+    margin-left: 1rem;
+  }
+  
+  .logo {
+    width: 100%;
+  }
+  
+  a {
+    color: black;
+    font-size: 1rem;
+  }
 
 input{
     padding: .9rem 1rem;
     border-radius: 2rem;
     border: 2px solid gray;
     width: 35rem;
-}
-
-a{
-    color: black;
-    font-size: 1.5rem;
 }
 
 a:hover{
