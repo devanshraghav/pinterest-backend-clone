@@ -1,5 +1,5 @@
 <main>
-  <form hidden action="/upload" id="uploadDpForm" method="post" enctype="multipart/form-data">
+  <form hidden action="/dpupload" id="uploadDpForm" method="post" enctype="multipart/form-data">
     <input type="file" name="dp"/>
   </form>
   <div class="section1">
@@ -10,7 +10,7 @@
 
       <div class="dp">
         <img
-          src="https://i.pinimg.com/564x/8b/21/5e/8b215ed6e4b80389d815921fe2eadb1e.jpg"
+          src="/images/uploads/<%=user.dp%>"
           alt="profile-pic"
           class="profile-pic"
         />
@@ -20,7 +20,7 @@
     <h2 class="fullname"><%= user.fullName%></h2>
     <h4 class="username">@<%= user.username%></h4>
     <a href="/edit" class="edit">Edit</a>
-    <button class="pin-create">Create</button>
+    <button class="pin-create" onclick="window.location.href= '/create'">Create</button>
   </div>
 
   <div class="section2">

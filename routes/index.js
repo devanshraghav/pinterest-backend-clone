@@ -28,10 +28,29 @@ router.get("/signin", function (req, res, next) {
 
 /* GET Profile Page */
 router.get("/profile", isLoggedIn, async function (req, res, next) {
+  // const user = await userModel.findOne({
+  //   username: req.session.passport.user,
+  // }).populate('posts');
+
+
+  // To show DP - uploaded by the user
   const user = await userModel.findOne({
     username: req.session.passport.user,
-  }).populate('posts');
+  });
   res.render("profile", { user });
+});
+
+/* GET Logout */
+router.get("/logout", function (req, res) {
+  req.logOut(function (err) {
+    if (err) return next(err);
+    res.redirect("/");
+  });
+});
+
+/* GET Create page*/
+router.get("/create", function (req, res) {
+  res.render("createPin");
 });
 
 /* Post Sigin */
@@ -68,13 +87,20 @@ router.post(
   function (req, res) {}
 );
 
-/* GET Logout */
-router.get("/logout", function (req, res) {
-  req.logOut(function (err) {
-    if (err) return next(err);
-    res.redirect("/");
-  });
-});
+/* Post Route for DP Uploading.*/
+router.post(
+  "/dpupload",
+  isLoggedIn,
+  upload.single("dp"),
+  async function (req, res) {
+    const user = await userModel.findOne({
+      username: req.session.passport.user,
+    });
+    user.dp = req.file.filename;
+    await user.save();
+    res.redirect("/profile");
+  }
+);
 
 /* Post route for uploads*/
 router.post(
