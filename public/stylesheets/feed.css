@@ -56,3 +56,23 @@ a:hover{
 .feed-img{
     width: 15rem;
 }
+
+.card{
+  display: flex;
+  gap: 1rem;
+}
+
+.pin {
+  width: 12rem;
+  height: 10rem;
+  background-color: white;
+  border-radius: 0.7rem;
+
+  overflow: hidden;
+}
+
+.pin-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

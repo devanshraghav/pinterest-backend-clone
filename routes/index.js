@@ -12,12 +12,16 @@ const upload = require("./multer");
 passport.use(new localStrategy(userModel.authenticate()));
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
+router.get("/", async function (req, res, next) {
   if (req.user) {
-    res.render("feed", {login : true});
-  }
-  else{
-    res.render("feed", {login: false})
+    const user = await userModel.findOne({
+      username: req.session.passport.user,
+    });
+    const post = await postModel.find().populate("user");
+    res.render("feed", { user, post, login: true });
+  } else {
+    const post = await postModel.find();
+    res.render("feed", { post, login: false });
   }
 });
 
@@ -33,9 +37,11 @@ router.get("/signin", function (req, res, next) {
 
 /* GET Profile Page */
 router.get("/profile", isLoggedIn, async function (req, res, next) {
-  const user = await userModel.findOne({
-    username: req.session.passport.user,
-  }).populate('posts');
+  const user = await userModel
+    .findOne({
+      username: req.session.passport.user,
+    })
+    .populate("posts");
 
   // To show DP - uploaded by the user
   // const user = await userModel.findOne({
@@ -53,7 +59,7 @@ router.get("/logout", function (req, res) {
 });
 
 /* GET Create page*/
-router.get("/create",function (req, res) {
+router.get("/create",isLoggedIn, function (req, res) {
   res.render("createPin");
 });
 

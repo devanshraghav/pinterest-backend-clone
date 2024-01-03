@@ -27,21 +27,26 @@
     </button>
   </div>
 
+  <% if (user.posts.length == 0) {%>
   <div class="section2">
     <p>Nothing to show...yet! Pins you create will live here.</p>
 
     <!-- <button class="pin-create">Create Pin</button> -->
   </div>
-
+  <%} else {%>
   <div class="pins">
     <div class="card">
       <div class="pin">
-        <img src="/images/uploads/<%=user?.posts[0]?.image%>" class="pin-image" />
+        <img
+          src="/images/uploads/<%=user?.posts[0]?.image%>"
+          class="pin-image"
+        />
       </div>
       <h3 class="">All pins</h3>
       <h5><%=user.posts.length%> Pins</h5>
     </div>
   </div>
+  <%}%>
 </main>
 
 <!-- <div class="modal">
