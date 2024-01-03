@@ -1,6 +1,12 @@
 <main>
-  <form hidden action="/dpupload" id="uploadDpForm" method="post" enctype="multipart/form-data">
-    <input type="file" name="dp"/>
+  <form
+    hidden
+    action="/dpupload"
+    id="uploadDpForm"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <input type="file" name="dp" />
   </form>
   <div class="section1">
     <div class="profile-dp">
@@ -9,18 +15,16 @@
       </span>
 
       <div class="dp">
-        <img
-          src="/images/uploads/<%=user.dp%>"
-          alt=""
-          class="profile-pic"
-        />
+        <img src="/images/uploads/<%=user.dp%>" alt="" class="profile-pic" />
       </div>
     </div>
 
     <h2 class="fullname"><%= user.fullName%></h2>
     <h4 class="username">@<%= user.username%></h4>
     <a href="/edit" class="edit">Edit</a>
-    <button class="pin-create" onclick="window.location.href= '/create'">Create</button>
+    <button class="pin-create" onclick="window.location.href= '/create'">
+      Create
+    </button>
   </div>
 
   <div class="section2">
@@ -32,14 +36,10 @@
   <div class="pins">
     <div class="card">
       <div class="pin">
-        <img
-          src="https://plus.unsplash.com/premium_photo-1691852519423-1a8ade157faf?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="pin-image"
-          class="pin-image"
-        />
+        <img src="/images/uploads/<%=user?.posts[0]?.image%>" class="pin-image" />
       </div>
       <h3 class="">All pins</h3>
-      <h5>2 pins</h5>
+      <h5><%=user.posts.length%> Pins</h5>
     </div>
   </div>
 </main>
@@ -50,21 +50,4 @@
     <input type="file" name="file" />
     <button type="submit" class="pin-create">Create Pin</button>
   </form>
-</div> -->
-
-<!-- <div class="uploads">
-  <div class="cards">
-    <% user.posts.forEach(function(post){ %>
-    <div class="card">
-      <img
-        alt="upload-feed"
-        src="/images/uploads/<%= post.image%>"
-        class="card-image"
-      />
-      <div class="card-body">
-        <h4 class="card-title"><%= post.postText %></h4>
-      </div>
-    </div>
-    <% }) %>
-  </div>
 </div> -->

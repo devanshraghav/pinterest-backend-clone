@@ -1,11 +1,47 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-form{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
+.main-container {
+  background-color: gray;
+  min-height: 100vh;
+  padding: 1.5rem 2rem;
+}
+
+.line {
+  margin-top: 1rem;
+  opacity: 0.1;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.5rem;
+}
+
+.file-text {
+  width: 33%;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+.file-text:focus {
+  outline: 0;
+}
+
+.submit-btn {
+  width: 33%;
+  background-color: #e60023;
+  padding: 0.5rem 1.5rem;
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+
+.submit-btn:hover {
+  background-color: #ad081b;
+  cursor: pointer;
 }

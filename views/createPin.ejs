@@ -4,17 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create Pin</title>
-    <link rel="stylesheet" href="/stylesheets/createPin.css">
+    <link rel="stylesheet" href="/stylesheets/createPin.css" />
   </head>
   <body>
-    <form action="">
-      <label>Title</label>
-      <input type="text" />
-      <label>Description</label>
-      <textarea name="" id="" cols="30" rows="10"></textarea>
-      <label>Board</label>
+    <main class="main-container">
+      <h1 class="post-heading">Create a new Post.</h1>
+      <hr class="line" />
 
-      <input type="file" />
-    </form>
+      <form action="/createPost" method="post" enctype="multipart/form-data">
+        <label>Title</label>
+        <input type="file" name="post-image"/>
+        <input type="text" placeholder="Add Title" class="file-text" name="title"/>
+        <label>Description</label>
+        <textarea name="description id="" cols="30" rows="10" placeholder="Add Description" class="file-text"></textarea> 
+
+        <input type="submit" value="submit" class="submit-btn"/>
+      </form>
+    </main>
   </body>
 </html>

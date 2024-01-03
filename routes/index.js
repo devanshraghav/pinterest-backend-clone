@@ -33,14 +33,14 @@ router.get("/signin", function (req, res, next) {
 
 /* GET Profile Page */
 router.get("/profile", isLoggedIn, async function (req, res, next) {
-  // const user = await userModel.findOne({
-  //   username: req.session.passport.user,
-  // }).populate('posts');
-
-  // To show DP - uploaded by the user
   const user = await userModel.findOne({
     username: req.session.passport.user,
-  });
+  }).populate('posts');
+
+  // To show DP - uploaded by the user
+  // const user = await userModel.findOne({
+  //   username: req.session.passport.user,
+  // });
   res.render("profile", { user });
 });
 
@@ -53,7 +53,7 @@ router.get("/logout", function (req, res) {
 });
 
 /* GET Create page*/
-router.get("/create", function (req, res) {
+router.get("/create",function (req, res) {
   res.render("createPin");
 });
 
@@ -108,9 +108,9 @@ router.post(
 
 /* Post route for uploads*/
 router.post(
-  "/upload",
+  "/createPost",
   isLoggedIn,
-  upload.single("file"),
+  upload.single("post-image"),
   async function (req, res) {
     if (!req.file) {
       return res.status(400).send("No files were uploaded");
@@ -127,7 +127,8 @@ router.post(
     // Create Post having user id:
     const postData = await postModel.create({
       image: req.file.filename,
-      postText: req.body.postText,
+      postText: req.body.titke,
+      description: req.body.description,
       user: user._id,
     });
 
